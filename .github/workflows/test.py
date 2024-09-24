@@ -6,9 +6,9 @@ from watchdog.events import FileSystemEventHandler
 import pypandoc
 
 # Path to your Word document and README.md file
-DOCX_PATH = "path/to/your/document.docx"
-README_PATH = "path/to/your/README.md"
-REPO_PATH = "path/to/your/repo"
+DOCX_PATH = ".github/workflows/Code Review.docx"
+README_PATH = ".github/workflows/readme.md"
+REPO_PATH = ".github/workflows"
 
 class WordDocHandler(FileSystemEventHandler):
     def on_modified(self, event):
