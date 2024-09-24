@@ -1,35 +1,35 @@
-name: Word to README.md Conversion
+# name: Word to README.md Conversion
 
-on:
-  push:
-    branches: [ main ]  # You can adjust this to trigger on specific branches
-  schedule:
-    - cron: '0 0 * * *'  # This runs the workflow daily at midnight (adjust as needed)
+# on:
+#   push:
+#     branches: [ main ]  # You can adjust this to trigger on specific branches
+#   schedule:
+#     - cron: '0 0 * * *'  # This runs the workflow daily at midnight (adjust as needed)
 
-jobs:
-  convert:
-    runs-on: ubuntu-latest  # You can choose a different runner OS
+# jobs:
+#   convert:
+#     runs-on: ubuntu-latest  # You can choose a different runner OS
 
-    steps:
-      - uses: actions/checkout@v3  # Checkout the repository code
+#     steps:
+#       - uses: actions/checkout@v3  # Checkout the repository code
 
-      # Download the Word document (replace with your actual location)
-      - name: Download Word document
-        uses: actions/download-artifact@v3
-        with:
-          name: word-document  # Name of the artifact containing the Word document
+#       # Download the Word document (replace with your actual location)
+#       - name: Download Word document
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: word-document  # Name of the artifact containing the Word document
 
     
 
-       # Option 2: Using a Self-hosted Script (replace with your script details)
-      - name: Convert Word to Markdown (Script)
-        uses: anilpat-vm/new_test/word-to-markdown.yml@main # Replace with your script repository details
-        with:
-           word_file: 'test.docx'  # Replace with downloaded word document filename
-           markdown_file: 'README.md'
+#        # Option 2: Using a Self-hosted Script (replace with your script details)
+#       - name: Convert Word to Markdown (Script)
+#         uses: anilpat-vm/new_test/word-to-markdown.yml@main # Replace with your script repository details
+#         with:
+#            word_file: 'test.docx'  # Replace with downloaded word document filename
+#            markdown_file: 'README.md'
 
-      - name: Commit changes
-        run: |
-          git config user.name 'GitHub Actions'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add 1    
+#       - name: Commit changes
+#         run: |
+#           git config user.name 'GitHub Actions'
+#           git config user.email 'github-actions[bot]@users.noreply.github.com'
+#           git add 1    
