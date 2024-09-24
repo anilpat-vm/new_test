@@ -19,19 +19,17 @@ jobs:
         with:
           name: word-document  # Name of the artifact containing the Word document
 
-     
-
     
-      - name: Convert Word to Markdown (Script) 
-        uses: anilpat-vm/new_test/.github/workflows@main.yml
 
-  # Replace with your script repository details
+       # Option 2: Using a Self-hosted Script (replace with your script details)
+      - name: Convert Word to Markdown (Script)
+        uses: anilpat-vm/new_test@main  # Replace with your script repository details
         with:
-          word_file: '.github/workflows/test.docx'  # Replace with downloaded word document filename
-          markdown_file: 'README.md'
+           word_file: 'test.docx'  # Replace with downloaded word document filename
+           markdown_file: 'README.md'
 
       - name: Commit changes
         run: |
-          git config user.name 'anilpat-vm'
-          git config user.email 'anil.patel@valuemomentum.com'
+          git config user.name 'GitHub Actions'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
           git add 1    
