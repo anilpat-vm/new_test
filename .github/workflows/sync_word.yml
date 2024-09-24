@@ -1,0 +1,33 @@
+name: Sync Word Document with README.md
+
+on:
+  push:
+    paths:
+      - 'User_Manual.docx'  # Triggers the workflow when UserManual.docx changes
+
+jobs:
+  convert-docx-to-md:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+
+    - name: Install Pandoc
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pandoc
+
+    - name: Convert Word to Markdown
+      run: |
+        pandoc UserManual.docx -o README.md  # Convert UserManual.docx to README.md
+
+    - name: Commit changes to README.md
+      run: |
+        git config --global user.name "anilpat-vm"
+        git config --global user.email "Anil.patel@valuemomentum.com"
+        git add README.md
+        git commit -m "Update README.md with changes from UserManual.docx"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
