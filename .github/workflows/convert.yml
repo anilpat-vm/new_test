@@ -1,0 +1,39 @@
+name: Convert Word to Markdown
+
+on:
+  push:
+    paths:
+      - '**/*.docx'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install Python and dependencies
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install pypandoc
+
+      # Run the conversion script (replace with your script logic)
+      - name: Convert Word to Markdown
+        run: |
+          pypandoc.convert_file('test.docx', 'md', outputfile='README.md')
+
+      # Commit and push changes
+      - name: Commit and push changes
+        run: |
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add README.md
+          git commit -m "Update README.md from Word document"
+          git push
