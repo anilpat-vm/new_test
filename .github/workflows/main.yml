@@ -1,33 +1,41 @@
-name: Sync Word Document with README.md
+name: Word to README.md Conversion
 
 on:
   push:
-    paths:
-      - 'User_Manual.docx'  # Triggers the workflow when UserManual.docx changes
+    branches: [ main ]  # You can adjust this to trigger on specific branches
+  schedule:
+    - cron: '0 0 * * *'  # This runs the workflow daily at midnight (adjust as needed)
 
 jobs:
-  convert-docx-to-md:
-    runs-on: ubuntu-latest
+  convert:
+    runs-on: ubuntu-latest  # You can choose a different runner OS
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v3  # Checkout the repository code
 
-    - name: Install Pandoc
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y pandoc
+      # Download the Word document (replace with your actual location)
+      - name: Download Word document
+        uses: actions/download-artifact@v3
+        with:
+          name: word-document  # Name of the artifact containing the Word document
 
-    - name: Convert Word to Markdown
-      run: |
-        pandoc UserManual.docx -o README.md  # Convert UserManual.docx to README.md
+      # Option 1: Using an Online Converter (replace with your chosen converter)
+      - name: Convert Word to Markdown (Online)
+        uses: crazymax/ghaction-online-convert@v1
+        with:
+          url: 'https://www.online-convert.com/convert-to-md'  # Replace with converter URL
+          input: 'your_word_document.docx'  # Replace with downloaded word document filename
+          output: 'README.md'
 
-    - name: Commit changes to README.md
-      run: |
-        git config --global user.name "anilpat-vm"
-        git config --global user.email "Anil.patel@valuemomentum.com"
-        git add README.md
-        git commit -m "Update README.md with changes from UserManual.docx"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Option 2: Using a Self-hosted Script (replace with your script details)
+      # - name: Convert Word to Markdown (Script)
+      #   uses: your-username/your-repo@your-branch  # Replace with your script repository details
+      #   with:
+      #     word_file: 'your_word_document.docx'  # Replace with downloaded word document filename
+      #     markdown_file: 'README.md'
+
+      - name: Commit changes
+        run: |
+          git config user.name 'GitHub Actions'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add 1    
