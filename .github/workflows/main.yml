@@ -19,23 +19,17 @@ jobs:
         with:
           name: word-document  # Name of the artifact containing the Word document
 
-      # Option 1: Using an Online Converter (replace with your chosen converter)
-      - name: Convert Word to Markdown (Online)
-        uses: crazymax/ghaction-online-convert@v1
-        with:
-          
-          input: '.github/workflows'  # Replace with downloaded word document filename
-          output: 'README.md'
+     
 
-      # Option 2: Using a Self-hosted Script (replace with your script details)
-      # - name: Convert Word to Markdown (Script)
-      #   uses: your-username/your-repo@your-branch  # Replace with your script repository details
-      #   with:
-      #     word_file: 'your_word_document.docx'  # Replace with downloaded word document filename
-      #     markdown_file: 'README.md'
+    
+      - name: Convert Word to Markdown (Script) anilpat-vm/new_test@main
+        uses: anilpat-vm/new_test@main  # Replace with your script repository details
+        with:
+          word_file: '.github/workflows/test.docx'  # Replace with downloaded word document filename
+          markdown_file: 'README.md'
 
       - name: Commit changes
         run: |
-          git config user.name 'GitHub Actions'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name 'anilpat-vm'
+          git config user.email 'anil.patel@valuemomentum.com'
           git add 1    
