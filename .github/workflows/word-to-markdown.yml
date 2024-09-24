@@ -23,7 +23,7 @@ jobs:
 
        # Option 2: Using a Self-hosted Script (replace with your script details)
       - name: Convert Word to Markdown (Script)
-        uses: anilpat-vm/new_test@main  # Replace with your script repository details
+        uses: anilpat-vm/new_test@word-to-markdown.yml  # Replace with your script repository details
         with:
            word_file: 'test.docx'  # Replace with downloaded word document filename
            markdown_file: 'README.md'
