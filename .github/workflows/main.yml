@@ -23,8 +23,8 @@ jobs:
       - name: Convert Word to Markdown (Online)
         uses: crazymax/ghaction-online-convert@v1
         with:
-          url: 'https://www.online-convert.com/convert-to-md'  # Replace with converter URL
-          input: 'your_word_document.docx'  # Replace with downloaded word document filename
+          
+          input: '.github/workflows'  # Replace with downloaded word document filename
           output: 'README.md'
 
       # Option 2: Using a Self-hosted Script (replace with your script details)
